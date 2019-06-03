@@ -2,26 +2,31 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import RecipeCard from "./../RecipeCard/RecipeCard";
 import "./Home.css";
+import store from '../../store';
 
 class Home extends Component {
   constructor(props) {
     super(props);
+    const reduxState = store.getState()
+    console.log(reduxState.recipeList)
     this.state = {
-      recipes: []
+      recipes: reduxState.recipeList
     };
   }
 
   render() {
+    console.log(this.state.recipes)
     const recipes = this.state.recipes.map((recipe, i) => {
+      console.log(recipe)
       return (
         <RecipeCard
           key={i}
-          name={recipe.name}
-          category={recipe.category}
-          authorFirst={recipe.authorFirst}
-          authorLast={recipe.authorLast}
-          ingredients={recipe.ingredients}
-          instructions={recipe.instructions}
+          name={recipe.recipeName}
+          category={recipe.recipeCategory}
+          authorFirst={recipe.authorsFirstName}
+          authorLast={recipe.authorsLastName}
+          ingredients={recipe.ingredientsList}
+          instructions={recipe.instructionsList}
         />
       );
     });

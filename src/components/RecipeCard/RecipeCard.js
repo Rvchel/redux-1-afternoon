@@ -2,6 +2,7 @@ import React from "react";
 import "./RecipeCard.css";
 
 let RecipeCard = props => {
+  console.log(props)
   const {
     name,
     category,
